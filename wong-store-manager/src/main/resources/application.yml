@@ -1,0 +1,7 @@
+spring:
+  application:
+    # 配置应用名称
+    name: wong-store-manager
+  profiles:
+    # 配置激活配置文件
+    active: dev
