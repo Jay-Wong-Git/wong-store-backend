@@ -22,8 +22,8 @@
         </where>
     </sql>
 
-    <!--  查询角色列表  -->
-    <select id="querySysRole" resultMap="sysRoleMap">
+    <!--  根据条件查询角色列表  -->
+    <select id="queryByCriteria" resultMap="sysRoleMap">
         SELECT
         <include refid="columns"/>
         FROM sys_role
@@ -32,13 +32,13 @@
     </select>
 
     <!--  添加角色  -->
-    <insert id="saveSysRole">
+    <insert id="save">
         INSERT INTO sys_role(id, role_name, role_code, description)
         VALUES (#{id}, #{roleName}, #{roleCode}, #{description})
     </insert>
 
     <!--  修改角色  -->
-    <update id="updateSysRole">
+    <update id="update">
         UPDATE sys_role SET
         <if test="roleName != null and roleName != ''">
             role_name = #{roleName},
@@ -53,10 +53,19 @@
         WHERE id = #{id}
     </update>
 
-    <!--  删除角色  -->
-    <update id="deleteSysRoleById">
+    <!--  根据角色Id删除角色  -->
+    <update id="deleteById">
         UPDATE sys_role
-        SET is_deleted = 1
+        SET is_deleted  = 1,
+            update_time = NOW()
         WHERE id = #{roleId}
     </update>
+
+    <!-- 查询所有角色 -->
+    <select id="queryAll" resultMap="sysRoleMap">
+        SELECT
+        <include refid="columns"/>
+        FROM sys_role
+        WHERE is_deleted = 0
+    </select>
 </mapper>

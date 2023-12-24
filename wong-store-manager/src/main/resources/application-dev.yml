@@ -28,3 +28,8 @@ store:
       - /doc.html
       - /webjars/**
       - /v3/**
+  minio:
+    endpoint-url: http://192.168.2.140:9000
+    access-key: minio
+    secret-key: password
+    bucket-name: store-bucket

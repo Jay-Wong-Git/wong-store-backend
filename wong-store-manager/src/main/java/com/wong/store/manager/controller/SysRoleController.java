@@ -11,11 +11,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Jay Wong
  * @date 2023/12/22 22:41
  */
-@Tag(name = "角色接口")
+@Tag(name = "角色管理接口")
 @RestController
 @RequestMapping("/admin/system/sysRole")
 public class SysRoleController {
@@ -23,7 +26,7 @@ public class SysRoleController {
     private SysRoleService sysRoleService;
 
     /**
-     * 分页查询角色列表
+     * 根据条件分页查询角色接口
      *
      * @param current    当前页
      * @param limit      每页显示条数
@@ -31,15 +34,15 @@ public class SysRoleController {
      * @return 角色信息列表
      */
 
-    @Operation(summary = "分页查询角色接口")
-    @PostMapping("/querySysRoleByPage/{current}/{limit}")
-    public Result<PageInfo<SysRole>> querySysRoleByPage(
+    @Operation(summary = "根据条件分页查询角色接口")
+    @PostMapping("/queryByCriteriaByPage/{current}/{limit}")
+    public Result<PageInfo<SysRole>> queryByCriteriaByPage(
             @PathVariable("current") Integer current,
             @PathVariable("limit") Integer limit,
             @RequestBody SysRoleDto sysRoleDto) {
         // 后端接口如果使用了@RequestBody注解，则前端使用 data 属性，传递 json 格式的数据给后端
         // 后端接口如果没有使用@RequestBody注解，则前端使用 params 属性，通过查询字符串传递数据给后端
-        PageInfo<SysRole> pageInfo = sysRoleService.querySysRoleByPage(sysRoleDto, current, limit);
+        PageInfo<SysRole> pageInfo = sysRoleService.queryByCriteriaByPage(sysRoleDto, current, limit);
         return Result.build(pageInfo, ResultCodeEnum.SUCCESS);
     }
 
@@ -50,9 +53,9 @@ public class SysRoleController {
      * @return 不返回数据
      */
     @Operation(summary = "添加角色接口")
-    @PostMapping("/saveSysRole")
-    public Result<Void> saveSysRole(@RequestBody SysRole sysRole) {
-        sysRoleService.saveSysRole(sysRole);
+    @PostMapping("/save")
+    public Result<Void> save(@RequestBody SysRole sysRole) {
+        sysRoleService.save(sysRole);
         return Result.build(null, ResultCodeEnum.SUCCESS);
     }
 
@@ -63,9 +66,9 @@ public class SysRoleController {
      * @return 不返回数据
      */
     @Operation(summary = "修改角色接口")
-    @PutMapping("/updateSysRole")
-    public Result<Void> updateSysRole(@RequestBody SysRole sysRole) {
-        sysRoleService.updateSysRole(sysRole);
+    @PutMapping("/update")
+    public Result<Void> update(@RequestBody SysRole sysRole) {
+        sysRoleService.update(sysRole);
         return Result.build(null, ResultCodeEnum.SUCCESS);
     }
 
@@ -76,9 +79,21 @@ public class SysRoleController {
      * @return 不返回数据
      */
     @Operation(summary = "删除角色接口")
-    @DeleteMapping("/deleteSysRoleById/{roleId}")
-    public Result<Void> deleteSysRoleById(@PathVariable("roleId") Long roleId) {
-        sysRoleService.deleteSysRoleById(roleId);
+    @DeleteMapping("/deleteById/{roleId}")
+    public Result<Void> deleteById(@PathVariable("roleId") Long roleId) {
+        sysRoleService.deleteById(roleId);
         return Result.build(null, ResultCodeEnum.SUCCESS);
+    }
+
+    /**
+     * 查询所有角色接口
+     *
+     * @return 所有角色列表及用户相关角色Id列表
+     */
+    @Operation(summary = "查询所有角色接口")
+    @GetMapping("/queryAll/{userId}")
+    public Result<Map<String, Object>> queryAll(@PathVariable("userId") Long userId) {
+        Map<String, Object> resultMap = sysRoleService.queryAll(userId);
+        return Result.build(resultMap, ResultCodeEnum.SUCCESS);
     }
 }

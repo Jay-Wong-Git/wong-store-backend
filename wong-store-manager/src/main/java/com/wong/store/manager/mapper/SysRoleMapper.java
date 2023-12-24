@@ -12,15 +12,18 @@ import java.util.List;
  */
 @Mapper
 public interface SysRoleMapper {
-    // 查询角色列表
-    List<SysRole> querySysRole(SysRoleDto sysRoleDto);
+    // 根据条件查询角色列表
+    List<SysRole> queryByCriteria(SysRoleDto sysRoleDto);
 
     // 添加角色
-    void saveSysRole(SysRole sysRole);
+    void save(SysRole sysRole);
 
     // 修改角色
-    void updateSysRole(SysRole sysRole);
+    void update(SysRole sysRole);
 
-    // 删除角色
-    void deleteSysRoleById(Long roleId);
+    // 根据角色Id删除角色
+    void deleteById(Long roleId);
+
+    // 查询所有角色
+    List<SysRole> queryAll();
 }

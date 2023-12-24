@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.manager.mapper.SysUserRoleMapper">
+
+    <!-- 根据用户Id删除所有相关数据 -->
+    <delete id="deleteByUserId">
+        DELETE
+        FROM sys_user_role
+        WHERE user_id = #{userId}
+    </delete>
+
+    <!-- 给用户分配指定角色 -->
+    <insert id="doAssign">
+        INSERT INTO sys_user_role (user_id, role_id)
+        VALUES (#{userId}, #{roleId})
+    </insert>
+
+    <!-- 根据用户id查询所有相关角色id -->
+    <select id="queryAllRoleIdsByUserId" resultType="java.lang.Long">
+        SELECT role_id
+        FROM sys_user_role
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

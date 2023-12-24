@@ -1,5 +1,6 @@
 package com.wong.store.manager;
 
+import com.wong.store.manager.properties.MinioProperties;
 import com.wong.store.manager.properties.UserAuthProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +13,9 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.wong.store"})
-@EnableConfigurationProperties({UserAuthProperties.class})
+@EnableConfigurationProperties({
+        UserAuthProperties.class,
+        MinioProperties.class})
 public class ManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ManagerApplication.class, args);
