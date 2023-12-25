@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.wong.store.model.dto.system.SysRoleDto;
 import com.wong.store.model.entity.system.SysRole;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +23,6 @@ public interface SysRoleService {
     // 删除角色
     void deleteById(Long roleId);
 
-    // 查询所有角色
-    Map<String, Object> queryAll(Long userId);
+    // 根据用户Id查询角色信息接口
+    Map<String, Object> queryRoleByUserId(Long userId);
 }

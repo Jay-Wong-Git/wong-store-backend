@@ -13,9 +13,12 @@
     </delete>
 
     <!-- 给用户分配指定角色 -->
-    <insert id="doAssign">
+    <insert id="save">
         INSERT INTO sys_user_role (user_id, role_id)
-        VALUES (#{userId}, #{roleId})
+        VALUES
+        <foreach collection="roleIdList" item="roleId" separator=",">
+            (#{userId}, #{roleId})
+        </foreach>
     </insert>
 
     <!-- 根据用户id查询所有相关角色id -->

@@ -74,12 +74,12 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     /**
-     * 查询所有角色
+     * 根据用户Id查询角色信息接口
      *
      * @return 所有角色列表及用户相关角色Id列表
      */
     @Override
-    public Map<String, Object> queryAll(Long userId) {
+    public Map<String, Object> queryRoleByUserId(Long userId) {
         // 1.获取所有角色
         List<SysRole> sysRoleList = sysRoleMapper.queryAll();
         // 2.获取用户相关的所有角色Id

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Jay Wong
  * @date 2023/12/22 14:31
  */
-@Tag(name = "用户接口")
+@Tag(name = "用户登录/退出接口")
 @RestController
 @RequestMapping("/admin/system/index")
 public class IndexController {

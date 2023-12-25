@@ -166,6 +166,9 @@ public class SysUserServiceImpl implements SysUserService {
         sysUserRoleMapper.deleteByUserId(userId);
         // 2.给用户重新分配角色
         List<Long> roleIdList = assignRoleDto.getRoleIdList();
-        roleIdList.forEach(roleId -> sysUserRoleMapper.doAssign(userId, roleId));
+        if (roleIdList != null && roleIdList.size() > 0) {
+//            roleIdList.forEach(roleId -> sysUserRoleMapper.save(userId, roleId));
+            sysUserRoleMapper.save(userId, roleIdList);
+        }
     }
 }

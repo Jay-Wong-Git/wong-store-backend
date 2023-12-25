@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -86,14 +85,14 @@ public class SysRoleController {
     }
 
     /**
-     * 查询所有角色接口
+     * 根据用户Id查询角色信息接口
      *
      * @return 所有角色列表及用户相关角色Id列表
      */
-    @Operation(summary = "查询所有角色接口")
-    @GetMapping("/queryAll/{userId}")
-    public Result<Map<String, Object>> queryAll(@PathVariable("userId") Long userId) {
-        Map<String, Object> resultMap = sysRoleService.queryAll(userId);
+    @Operation(summary = "根据用户Id查询角色信息接口")
+    @GetMapping("/queryRoleByUserId/{userId}")
+    public Result<Map<String, Object>> queryRoleByUserId(@PathVariable("userId") Long userId) {
+        Map<String, Object> resultMap = sysRoleService.queryRoleByUserId(userId);
         return Result.build(resultMap, ResultCodeEnum.SUCCESS);
     }
 }

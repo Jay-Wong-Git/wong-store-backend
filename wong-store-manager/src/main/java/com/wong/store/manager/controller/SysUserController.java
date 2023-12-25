@@ -81,6 +81,12 @@ public class SysUserController {
         return Result.build(null, ResultCodeEnum.SUCCESS);
     }
 
+    /**
+     * 给用户分配角色接口
+     *
+     * @param assignRoleDto 参数对象
+     * @return 不返回数据
+     */
     @Operation(summary = "给用户分配角色接口")
     @PostMapping("/doAssign")
     public Result<Void> doAssign(@RequestBody AssignRoleDto assignRoleDto) {

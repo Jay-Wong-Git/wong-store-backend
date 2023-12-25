@@ -15,7 +15,7 @@ public interface SysUserRoleMapper {
     void deleteByUserId(@Param("userId") Long userId);
 
     // 给用户分配指定角色
-    void doAssign(@Param("userId") Long userId, @Param("roleId") Long roleId);
+    void save(@Param("userId") Long userId, @Param("roleIdList") List<Long> roleIdList);
 
     // 根据用户Id查询所有相关角色Id
     List<Long> queryAllRoleIdsByUserId(@Param("userId") Long userId);
