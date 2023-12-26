@@ -29,4 +29,11 @@
             (#{roleId}, #{menuInfo.id}, #{menuInfo.isHalf})
         </foreach>
     </insert>
+
+    <!-- 根据菜单Id修改is_half状态 -->
+    <update id="updateIsHalf">
+        UPDATE sys_role_menu
+        SET is_half = 1
+        WHERE menu_id = #{menuId}
+    </update>
 </mapper>

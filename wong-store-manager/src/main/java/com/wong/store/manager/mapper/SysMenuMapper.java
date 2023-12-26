@@ -25,4 +25,10 @@ public interface SysMenuMapper {
 
     // 根据Id删除菜单
     void deleteById(Long menuId);
+
+    // 根据用户Id获取相关菜单
+    List<SysMenu> querySysMenuListByUserId(Long userId);
+
+    // 根据菜单Id获取菜单
+    SysMenu queryById(Long menuId);
 }

@@ -2,14 +2,18 @@ package com.wong.store.manager.service.impl;
 
 import com.wong.store.common.exception.BusinessException;
 import com.wong.store.manager.mapper.SysMenuMapper;
+import com.wong.store.manager.mapper.SysRoleMenuMapper;
 import com.wong.store.manager.service.SysMenuService;
 import com.wong.store.manager.utils.MenuHelper;
 import com.wong.store.model.entity.system.SysMenu;
 import com.wong.store.model.vo.common.ResultCodeEnum;
+import com.wong.store.model.vo.system.SysMenuVo;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,6 +24,8 @@ import java.util.List;
 public class SysMenuServiceImpl implements SysMenuService {
     @Resource
     private SysMenuMapper sysMenuMapper;
+    @Resource
+    private SysRoleMenuMapper sysRoleMenuMapper;
 
     /**
      * 获取所有菜单
@@ -44,7 +50,21 @@ public class SysMenuServiceImpl implements SysMenuService {
      */
     @Override
     public void save(SysMenu sysMenu) {
+        // 1.添加菜单
         sysMenuMapper.save(sysMenu);
+        // 2.更新sys_role_menu表中所有相关父菜单isHalf为半开状态
+        updateSysRoleMenu(sysMenu);
+    }
+
+    private void updateSysRoleMenu(SysMenu sysMenu) {
+        // 1.获取当前菜单的父菜单
+        SysMenu parentMenu = sysMenuMapper.queryById(sysMenu.getParentId());
+        if (parentMenu != null) {
+            // 2.更新父菜单为半开状态
+            sysRoleMenuMapper.updateIsHalf(parentMenu.getId());
+            // 3.递归更新
+            updateSysRoleMenu(parentMenu);
+        }
     }
 
     /**
@@ -72,5 +92,26 @@ public class SysMenuServiceImpl implements SysMenuService {
         }
         // 3.若不包含子菜单，直接删除
         sysMenuMapper.deleteById(menuId);
+    }
+
+    /**
+     * 根据用户Id获取对应的菜单列表(树形)
+     *
+     * @param userId 用户Id
+     * @return 树形菜单列表
+     */
+    @Override
+    public List<SysMenuVo> querySysMenuVoListByUserId(Long userId) {
+        // 1.获取指定用户相关的所有菜单
+        List<SysMenu> sysMenuList = sysMenuMapper.querySysMenuListByUserId(userId);
+        // 2.整理成树形结构
+        List<SysMenu> treeSysMenu = MenuHelper.buildTree(sysMenuList);
+        // 3.把SysMenu对象转换成SysMenuVo对象
+        ArrayList<SysMenuVo> treeSysMenuVo = new ArrayList<>();
+        for (SysMenu sysMenu : treeSysMenu) {
+            SysMenuVo sysMenuVo = MenuHelper.transferToVo(sysMenu);
+            treeSysMenuVo.add(sysMenuVo);
+        }
+        return treeSysMenuVo;
     }
 }

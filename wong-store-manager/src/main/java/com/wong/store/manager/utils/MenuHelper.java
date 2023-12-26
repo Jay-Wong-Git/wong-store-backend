@@ -1,6 +1,8 @@
 package com.wong.store.manager.utils;
 
 import com.wong.store.model.entity.system.SysMenu;
+import com.wong.store.model.vo.system.SysMenuVo;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +33,20 @@ public class MenuHelper {
             }
         }
         return sysMenu;
+    }
+
+    // 将SysMenu对象转换成SysMenuVo对象
+    public static SysMenuVo transferToVo(SysMenu sysMenu) {
+        SysMenuVo sysMenuVo = new SysMenuVo();
+        sysMenuVo.setTitle(sysMenu.getTitle());
+        sysMenuVo.setName(sysMenu.getComponent());
+        List<SysMenu> children = sysMenu.getChildren();
+        if (!CollectionUtils.isEmpty(children)) {
+            sysMenuVo.setChildren(new ArrayList<>());
+            for (SysMenu child : children) {
+                sysMenuVo.getChildren().add(transferToVo(child));
+            }
+        }
+        return sysMenuVo;
     }
 }

@@ -1,5 +1,6 @@
 package com.wong.store.manager.controller;
 
+import com.wong.store.manager.service.SysMenuService;
 import com.wong.store.manager.service.SysUserService;
 import com.wong.store.manager.service.ValidateCodeService;
 import com.wong.store.model.dto.system.LoginDto;
@@ -7,12 +8,15 @@ import com.wong.store.model.entity.system.SysUser;
 import com.wong.store.model.vo.common.Result;
 import com.wong.store.model.vo.common.ResultCodeEnum;
 import com.wong.store.model.vo.system.LoginVo;
+import com.wong.store.model.vo.system.SysMenuVo;
 import com.wong.store.model.vo.system.ValidateCodeVo;
 import com.wong.store.utils.AuthContextUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Jay Wong
@@ -24,6 +28,8 @@ import org.springframework.web.bind.annotation.*;
 public class IndexController {
     @Resource
     private SysUserService sysUserService;
+    @Resource
+    private SysMenuService sysMenuService;
     @Resource
     private ValidateCodeService validateCodeService;
 
@@ -59,5 +65,14 @@ public class IndexController {
     public Result<Void> logout(@RequestHeader(name = "token") String token) {
         sysUserService.logout(token);
         return Result.build(null, ResultCodeEnum.SUCCESS);
+    }
+
+    // 获取用户对应菜单接口
+    @Operation(summary = "获取用户对应菜单接口")
+    @GetMapping("/menus")
+    public Result<List<SysMenuVo>> menus() {
+        SysUser sysUser = AuthContextUtil.get();
+        List<SysMenuVo> menuVoList = sysMenuService.querySysMenuVoListByUserId(sysUser.getId());
+        return Result.build(menuVoList, ResultCodeEnum.SUCCESS);
     }
 }

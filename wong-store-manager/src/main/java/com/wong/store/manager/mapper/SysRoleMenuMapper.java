@@ -19,4 +19,7 @@ public interface SysRoleMenuMapper {
 
     // 给指定角色分配指定菜单
     void save(Long roleId, List<Map<String, Number>> menuInfoList);
+
+    // 根据菜单Id修改is_half状态
+    void updateIsHalf(Long menuId);
 }
