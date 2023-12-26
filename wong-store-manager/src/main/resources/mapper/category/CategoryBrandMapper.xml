@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.manager.mapper.CategoryBrandMapper">
+
+    <!--  映射查询到的字段 -->
+    <resultMap id="categoryBrandMap" type="com.wong.store.model.entity.product.CategoryBrand" autoMapping="true"/>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,brand_id,category_id,create_time,update_time,is_deleted
+    </sql>
+
+    <sql id="queryCriteria">
+        <where>
+            <if test="brandId != null and brandId != ''">
+                and cb.brand_id = #{brandId}
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                and cb.category_id = #{categoryId}
+            </if>
+            and cb.is_deleted = 0
+        </where>
+    </sql>
+
+    <!-- 条件查询分类品牌信息 -->
+    <select id="queryByCriteria" resultMap="categoryBrandMap">
+        SELECT
+        cb.id,
+        cb.brand_id,
+        cb.category_id,
+        cb.create_time,
+        cb.update_time,
+        c.name as categoryName,
+        b.name as brandName,
+        b.logo
+        FROM category_brand cb
+        LEFT JOIN category c ON cb.category_id = c.id
+        LEFT JOIN brand b on cb.brand_id = b.id
+        <include refid="queryCriteria"/>
+        ORDER BY cb.id DESC
+    </select>
+
+    <!-- 添加分类品牌 -->
+    <insert id="save">
+        INSERT INTO category_brand (brand_id, category_id)
+        VALUES (#{brandId}, #{categoryId})
+    </insert>
+
+    <!-- 修改分类品牌 -->
+    <update id="update">
+        UPDATE category_brand SET
+        <if test="categoryId != null and categoryId != ''">
+            category_id=#{categoryId},
+        </if>
+        <if test="brandId != null and brandId != ''">
+            brand_id = #{brandId},
+        </if>
+        update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据id删除分类品牌 -->
+    <update id="deleteById">
+        UPDATE category_brand
+        SET is_deleted  = 1,
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+</mapper>

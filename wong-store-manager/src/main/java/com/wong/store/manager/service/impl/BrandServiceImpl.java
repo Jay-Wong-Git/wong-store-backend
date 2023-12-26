@@ -62,4 +62,14 @@ public class BrandServiceImpl implements BrandService {
     public void deleteById(Long brandId) {
         brandMapper.deleteById(brandId);
     }
+
+    /**
+     * 获取所有品牌
+     *
+     * @return 品牌列表
+     */
+    @Override
+    public List<Brand> queryAll() {
+        return brandMapper.queryAll();
+    }
 }

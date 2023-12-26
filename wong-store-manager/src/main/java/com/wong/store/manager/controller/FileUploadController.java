@@ -3,6 +3,7 @@ package com.wong.store.manager.controller;
 import com.wong.store.manager.service.FileUploadService;
 import com.wong.store.model.vo.common.Result;
 import com.wong.store.model.vo.common.ResultCodeEnum;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ public class FileUploadController {
      * @param file 文件对象
      * @return 访问文件的 url
      */
+    @Operation(summary = "上传文件接口")
     @PostMapping("/fileUpload")
     public Result<String> upload(@RequestParam("file") MultipartFile file) {
         String fileUrl = fileUploadService.upload(file);

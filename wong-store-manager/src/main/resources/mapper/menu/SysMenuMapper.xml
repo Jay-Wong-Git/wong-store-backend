@@ -61,7 +61,8 @@
     <!-- 根据Id删除菜单 -->
     <update id="deleteById">
         UPDATE sys_menu
-        SET is_deleted = 1
+        SET is_deleted = 1,
+            update_time = NOW()
         WHERE id = #{menuId}
     </update>
 

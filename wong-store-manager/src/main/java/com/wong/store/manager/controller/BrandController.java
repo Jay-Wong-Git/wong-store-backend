@@ -12,6 +12,7 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import javax.lang.model.element.Name;
+import java.util.List;
 
 /**
  * @author Jay Wong
@@ -77,5 +78,17 @@ public class BrandController {
     public Result<Void> deleteById(@PathVariable("brandId") Long brandId) {
         brandService.deleteById(brandId);
         return Result.build(null, ResultCodeEnum.SUCCESS);
+    }
+
+    /**
+     * 获取所有品牌接口
+     *
+     * @return 品牌列表
+     */
+    @Operation(summary = "获取所有品牌接口")
+    @GetMapping("/queryAll")
+    public Result<List<Brand>> queryAll() {
+        List<Brand> brandList = brandService.queryAll();
+        return Result.build(brandList, ResultCodeEnum.SUCCESS);
     }
 }
