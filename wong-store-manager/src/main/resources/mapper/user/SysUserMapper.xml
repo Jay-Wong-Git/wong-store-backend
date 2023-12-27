@@ -45,9 +45,11 @@
     </select>
 
     <!--  添加用户  -->
-    <insert id="save">
-        INSERT INTO sys_user(id, username, password, name, phone, avatar, description, status)
-        VALUES (#{id}, #{userName}, #{password}, #{name}, #{phone}, #{avatar}, #{description}, #{status})
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user(id, username, password, name, phone, avatar,
+                             description, status, create_time, update_time, is_deleted)
+        VALUES (#{id}, #{userName}, #{password}, #{name}, #{phone}, #{avatar},
+                #{description}, #{status}, NOW(), NOW(), 0)
     </insert>
 
     <!--  更新用户  -->

@@ -62,4 +62,14 @@ public class ProductSpecServiceImpl implements ProductSpecService {
     public void deleteById(Long id) {
         productSpecMapper.deleteById(id);
     }
+
+    /**
+     * 查询所有商品规格
+     *
+     * @return 商品规格列表
+     */
+    @Override
+    public List<ProductSpec> queryAll() {
+        return productSpecMapper.queryAll();
+    }
 }

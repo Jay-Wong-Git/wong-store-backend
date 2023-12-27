@@ -20,9 +20,14 @@
     </select>
 
     <!-- 添加品牌 -->
-    <insert id="save">
-        INSERT INTO brand(name, logo)
-        VALUES (#{name}, #{logo})
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO brand(id, name, logo, create_time, update_time, is_deleted)
+        VALUES (#{id},
+                #{name},
+                #{logo},
+                now(),
+                now(),
+                0)
     </insert>
 
     <!-- 修改品牌 -->

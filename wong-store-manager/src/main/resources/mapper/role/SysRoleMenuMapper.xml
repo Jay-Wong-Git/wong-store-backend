@@ -23,10 +23,10 @@
 
     <!-- 给指定角色分配指定菜单 -->
     <insert id="save">
-        INSERT INTO sys_role_menu(role_id, menu_id, is_half)
+        INSERT INTO sys_role_menu(role_id, menu_id, is_half, create_time, update_time, is_deleted)
         VALUES
         <foreach collection="menuInfoList" item="menuInfo" separator=",">
-            (#{roleId}, #{menuInfo.id}, #{menuInfo.isHalf})
+            (#{roleId}, #{menuInfo.id}, #{menuInfo.isHalf}, NOW(), NOW(), 0)
         </foreach>
     </insert>
 

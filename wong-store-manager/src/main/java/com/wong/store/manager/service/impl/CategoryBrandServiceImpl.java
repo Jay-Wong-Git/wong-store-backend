@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.wong.store.manager.mapper.CategoryBrandMapper;
 import com.wong.store.manager.service.CategoryBrandService;
 import com.wong.store.model.dto.product.CategoryBrandDto;
+import com.wong.store.model.entity.product.Brand;
 import com.wong.store.model.entity.product.CategoryBrand;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -63,5 +64,16 @@ public class CategoryBrandServiceImpl implements CategoryBrandService {
     @Override
     public void deleteById(Long id) {
         categoryBrandMapper.deleteById(id);
+    }
+
+    /**
+     * 根据分类Id获取品牌
+     *
+     * @param categoryId 分类Id
+     * @return 品牌列表
+     */
+    @Override
+    public List<Brand> queryBrandByCategoryId(Long categoryId) {
+        return categoryBrandMapper.queryBrandByCategoryId(categoryId);
     }
 }

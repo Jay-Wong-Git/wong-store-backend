@@ -1,6 +1,7 @@
 package com.wong.store.manager.mapper;
 
 import com.wong.store.model.dto.product.CategoryBrandDto;
+import com.wong.store.model.entity.product.Brand;
 import com.wong.store.model.entity.product.CategoryBrand;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,4 +24,7 @@ public interface CategoryBrandMapper {
 
     // 根据id删除分类品牌
     void deleteById(Long id);
+
+    // 根据分类Id获取品牌
+    List<Brand> queryBrandByCategoryId(Long categoryId);
 }

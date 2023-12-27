@@ -10,6 +10,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Jay Wong
  * @date 2023/12/26 16:20
@@ -67,5 +69,17 @@ public class ProductSpecController {
     public Result<Void> deleteById(@PathVariable("id") Long id) {
         productSpecService.deleteById(id);
         return Result.build(null, ResultCodeEnum.SUCCESS);
+    }
+
+    /**
+     * 查询所有商品规格接口
+     *
+     * @return 商品规格列表
+     */
+    @Operation(summary = "查询所有商品规格接口")
+    @GetMapping("/queryAll")
+    public Result<List<ProductSpec>> queryAll() {
+        List<ProductSpec> productSpecList = productSpecService.queryAll();
+        return Result.build(productSpecList, ResultCodeEnum.SUCCESS);
     }
 }

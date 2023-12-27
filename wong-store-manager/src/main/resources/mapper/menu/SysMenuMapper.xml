@@ -23,9 +23,11 @@
     </select>
 
     <!-- 添加菜单 -->
-    <insert id="save">
-        INSERT INTO sys_menu (id, parent_id, title, component, sort_value, status)
-        VALUES (#{id}, #{parentId}, #{title}, #{component}, #{sortValue}, #{status})
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_menu (id, parent_id, title, component, sort_value, status,
+                              create_time, update_time, is_deleted)
+        VALUES (#{id}, #{parentId}, #{title}, #{component}, #{sortValue},
+                #{status}, NOW(), NOW(), 0)
     </insert>
 
     <!-- 修改菜单 -->

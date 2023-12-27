@@ -32,9 +32,10 @@
     </select>
 
     <!--  添加角色  -->
-    <insert id="save">
-        INSERT INTO sys_role(id, role_name, role_code, description)
-        VALUES (#{id}, #{roleName}, #{roleCode}, #{description})
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_role(id, role_name, role_code, description,
+                             create_time, update_time, is_deleted)
+        VALUES (#{id}, #{roleName}, #{roleCode}, #{description}, NOW(), NOW(), 0)
     </insert>
 
     <!--  修改角色  -->

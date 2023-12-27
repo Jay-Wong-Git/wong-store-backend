@@ -2,7 +2,10 @@ package com.wong.store.manager.service;
 
 import com.github.pagehelper.PageInfo;
 import com.wong.store.model.dto.product.CategoryBrandDto;
+import com.wong.store.model.entity.product.Brand;
 import com.wong.store.model.entity.product.CategoryBrand;
+
+import java.util.List;
 
 /**
  * @author Jay Wong
@@ -20,4 +23,7 @@ public interface CategoryBrandService {
 
     // 根据id删除分类品牌
     void deleteById(Long id);
+
+    // 根据分类Id获取品牌
+    List<Brand> queryBrandByCategoryId(Long categoryId);
 }

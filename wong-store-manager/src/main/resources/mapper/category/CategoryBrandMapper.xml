@@ -44,9 +44,14 @@
     </select>
 
     <!-- 添加分类品牌 -->
-    <insert id="save">
-        INSERT INTO category_brand (brand_id, category_id)
-        VALUES (#{brandId}, #{categoryId})
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category_brand (id, brand_id, category_id, create_time, update_time, is_deleted)
+        VALUES (#{id},
+                #{brandId},
+                #{categoryId},
+                now(),
+                now(),
+                0)
     </insert>
 
     <!-- 修改分类品牌 -->
@@ -69,4 +74,14 @@
             update_time = NOW()
         WHERE id = #{id}
     </update>
+
+    <!-- 根据分类Id获取品牌 -->
+    <select id="queryBrandByCategoryId" resultType="com.wong.store.model.entity.product.Brand">
+        SELECT b.*
+        FROM brand b
+                 LEFT JOIN category_brand cb on b.id = cb.brand_id
+        WHERE cb.category_id = #{categoryId}
+          AND b.is_deleted = 0
+        ORDER BY b.id DESC
+    </select>
 </mapper>

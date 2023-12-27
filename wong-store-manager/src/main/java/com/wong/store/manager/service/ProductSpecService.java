@@ -3,6 +3,8 @@ package com.wong.store.manager.service;
 import com.github.pagehelper.PageInfo;
 import com.wong.store.model.entity.product.ProductSpec;
 
+import java.util.List;
+
 /**
  * @author Jay Wong
  * @date 2023/12/26 16:23
@@ -19,4 +21,8 @@ public interface ProductSpecService {
 
     // 根据Id删除商品规格
     void deleteById(Long id);
+
+    // 查询所有商品规格
+    List<ProductSpec> queryAll();
+
 }

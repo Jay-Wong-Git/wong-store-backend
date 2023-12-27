@@ -14,10 +14,10 @@
 
     <!-- 给用户分配指定角色 -->
     <insert id="save">
-        INSERT INTO sys_user_role (user_id, role_id)
+        INSERT INTO sys_user_role (user_id, role_id, create_time, update_time, is_deleted)
         VALUES
         <foreach collection="roleIdList" item="roleId" separator=",">
-            (#{userId}, #{roleId})
+            (#{userId}, #{roleId}, NOW(), NOW(), 0)
         </foreach>
     </insert>
 

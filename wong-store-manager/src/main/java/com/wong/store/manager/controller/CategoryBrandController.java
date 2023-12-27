@@ -3,6 +3,7 @@ package com.wong.store.manager.controller;
 import com.github.pagehelper.PageInfo;
 import com.wong.store.manager.service.CategoryBrandService;
 import com.wong.store.model.dto.product.CategoryBrandDto;
+import com.wong.store.model.entity.product.Brand;
 import com.wong.store.model.entity.product.CategoryBrand;
 import com.wong.store.model.vo.common.Result;
 import com.wong.store.model.vo.common.ResultCodeEnum;
@@ -10,6 +11,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Jay Wong
@@ -69,6 +72,7 @@ public class CategoryBrandController {
 
     /**
      * 根据id删除分类品牌接口
+     *
      * @param id id
      * @return 不返回数据
      */
@@ -77,5 +81,18 @@ public class CategoryBrandController {
     public Result<Void> deleteById(@PathVariable("id") Long id) {
         categoryBrandService.deleteById(id);
         return Result.build(null, ResultCodeEnum.SUCCESS);
+    }
+
+    /**
+     * 根据分类Id获取品牌接口
+     * @param categoryId 分类Id
+     * @return 品牌列表
+     */
+    @Operation(summary = "根据分类Id获取品牌接口")
+    @GetMapping("/queryBrandByCategoryId/{categoryId}")
+    public Result<List<Brand>> queryBrandByCategoryId(
+            @PathVariable("categoryId") Long categoryId) {
+        List<Brand> brandList = categoryBrandService.queryBrandByCategoryId(categoryId);
+        return Result.build(brandList, ResultCodeEnum.SUCCESS);
     }
 }

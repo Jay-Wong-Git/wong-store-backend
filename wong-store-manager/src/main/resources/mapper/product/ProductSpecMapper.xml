@@ -23,9 +23,10 @@
     </select>
 
     <!-- 添加商品规格 -->
-    <insert id="save">
-        INSERT INTO product_spec(spec_name, spec_value)
-        VALUES (#{specName}, #{specValue})
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product_spec(id, spec_name, spec_value, create_time,
+                                 update_time, is_deleted)
+        VALUES (#{id}, #{specName}, #{specValue}, NOW(), NOW(), 0)
     </insert>
 
     <!-- 修改商品规格 -->

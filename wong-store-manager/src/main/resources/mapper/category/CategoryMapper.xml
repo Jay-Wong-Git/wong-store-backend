@@ -41,11 +41,16 @@
     </select>
 
     <!-- 批量添加分类 -->
-    <insert id="saveBatch">
-        INSERT INTO category(name, image_url, parent_id, status, order_num)
+    <insert id="saveBatch" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category(id, name, image_url, parent_id, status, order_num,
+        create_time, update_time, is_deleted)
         VALUES
         <foreach collection="categoryList" item="category" separator=",">
-            (#{category.name}, #{category.imageUrl}, #{category.parentId}, #{category.status}, #{category.orderNum})
+            (
+            #{category.id},#{category.name}, #{category.imageUrl},
+            #{category.parentId}, #{category.status},
+            #{category.orderNum},NOW(),NOW(),0
+            )
         </foreach>
     </insert>
 </mapper>
