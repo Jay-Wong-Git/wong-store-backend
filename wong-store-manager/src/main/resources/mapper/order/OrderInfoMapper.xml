@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.manager.mapper.OrderInfoMapper">
+    <!-- 根据指定日期查询订单统计数据 -->
+    <select id="queryOrderStatisticDataByCreateTime"
+            resultType="com.wong.store.model.entity.order.OrderStatistics">
+        SELECT DATE_FORMAT(oi.create_time, '%Y-%m-%d') orderDate,
+               SUM(oi.total_amount)                    totalAmount,
+               COUNT(oi.id)                            totalNum
+        FROM order_info oi
+        WHERE DATE_FORMAT(oi.create_time, '%Y-%m-%d') = #{createTime}
+        GROUP BY DATE_FORMAT(oi.create_time, '%Y-%m-%d')
+    </select>
+</mapper>

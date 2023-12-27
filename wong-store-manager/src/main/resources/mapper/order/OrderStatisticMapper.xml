@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.manager.mapper.OrderStatisticMapper">
+    <!--  映射查询到的字段 -->
+    <resultMap id="orderStatisticsMap" type="com.wong.store.model.entity.order.OrderStatistics"/>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,order_date,total_amount,total_num,create_time,update_time,is_deleted
+    </sql>
+
+    <!-- 添加订单统计数据 -->
+    <insert id="save">
+        INSERT INTO order_statistics(id, order_date, total_amount, total_num,
+                                     create_time, update_time, is_deleted)
+        VALUES (#{id}, #{orderDate}, #{totalAmount}, #{totalNum}, NOW(), NOW(), 0)
+    </insert>
+
+    <!-- 查询订单统计数据 -->
+    <select id="queryOrderStatisticData" resultMap="orderStatisticsMap">
+        SELECT
+        <include refid="columns"/>
+        FROM order_statistics
+        <where>
+            <if test="createTimeBegin != null and createTimeBegin != ''">
+                AND order_date >= #{createTimeBegin}
+            </if>
+            <if test="createTimeEnd != null and createTimeEnd != ''">
+                AND order_date &lt;= #{createTimeEnd}
+            </if>
+        </where>
+        ORDER BY order_date
+    </select>
+</mapper>
