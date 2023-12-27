@@ -1,6 +1,8 @@
 package com.wong.store.manager.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.ProductService;
 import com.wong.store.model.dto.product.ProductDto;
 import com.wong.store.model.entity.product.Product;
@@ -30,6 +32,13 @@ public class ProductController {
      * @param productDto 参数对象
      * @return 商品列表
      */
+    @Log(
+            title = "根据条件分页获取商品接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveRequestData = false,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据条件分页获取商品接口")
     @PostMapping("/queryByCriteriaByPage/{current}/{limit}")
     public Result<PageInfo<Product>> queryByCriteriaByPage(
@@ -46,6 +55,12 @@ public class ProductController {
      * @param product 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "添加商品接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 1,
+            isSaveRequestData = false
+    )
     @Operation(summary = "添加商品接口")
     @PostMapping("/save")
     public Result<Void> save(@RequestBody Product product) {
@@ -59,6 +74,12 @@ public class ProductController {
      * @param id 商品Id
      * @return 商品对象
      */
+    @Log(
+            title = "根据Id获取商品接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据Id获取商品接口")
     @GetMapping("/queryById/{id}")
     public Result<Product> queryById(@PathVariable("id") Long id) {
@@ -72,6 +93,12 @@ public class ProductController {
      * @param product 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "修改商品接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 2,
+            isSaveRequestData = false
+    )
     @Operation(summary = "修改商品接口")
     @PutMapping("/update")
     public Result<Void> update(@RequestBody Product product) {
@@ -85,6 +112,11 @@ public class ProductController {
      * @param id 商品Id
      * @return 不返回数据
      */
+    @Log(
+            title = "根据Id删除商品接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 3
+    )
     @Operation(summary = "根据Id删除商品接口")
     @DeleteMapping("/deleteById/{id}")
     public Result<Void> deleteById(@PathVariable("id") Long id) {
@@ -99,6 +131,11 @@ public class ProductController {
      * @param auditStatus 审核状态
      * @return 不返回数据
      */
+    @Log(
+            title = "更新指定商品审核状态接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 2
+    )
     @Operation(summary = "更新指定商品审核状态接口")
     @GetMapping("/updateAuditStatus/{id}/{auditStatus}")
     public Result<Void> updateAuditStatus(
@@ -115,6 +152,11 @@ public class ProductController {
      * @param status 商品上架或下架 1上架；-1下架
      * @return 不返回数据
      */
+    @Log(
+            title = "商品上架和下架接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 2
+    )
     @Operation(summary = "商品上架和下架接口")
     @GetMapping("/updateStatus/{id}/{status}")
     public Result<Void> updateStatus(

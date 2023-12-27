@@ -1,6 +1,8 @@
 package com.wong.store.manager.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.CategoryBrandService;
 import com.wong.store.model.dto.product.CategoryBrandDto;
 import com.wong.store.model.entity.product.Brand;
@@ -33,6 +35,13 @@ public class CategoryBrandController {
      * @param categoryBrandDto 参数对象
      * @return 分类品牌列表
      */
+    @Log(
+            title = "根据条件分页查询分类品牌信息接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveRequestData = false,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据条件分页查询分类品牌信息接口")
     @PostMapping("/queryByCriteriaByPage/{current}/{limit}")
     public Result<PageInfo<CategoryBrand>> queryByCriteriaByPage(
@@ -49,6 +58,12 @@ public class CategoryBrandController {
      * @param categoryBrand 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "添加分类品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 1,
+            isSaveRequestData = false
+    )
     @Operation(summary = "添加分类品牌接口")
     @PostMapping("/save")
     public Result<Void> save(@RequestBody CategoryBrand categoryBrand) {
@@ -63,6 +78,12 @@ public class CategoryBrandController {
      * @param categoryBrand 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "修改分类品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 2,
+            isSaveRequestData = false
+    )
     @Operation(summary = "修改分类品牌接口")
     @PutMapping("/update")
     public Result<Void> update(@RequestBody CategoryBrand categoryBrand) {
@@ -76,7 +97,12 @@ public class CategoryBrandController {
      * @param id id
      * @return 不返回数据
      */
-    @Operation(summary = "删除分类品牌接口")
+    @Log(
+            title = "根据Id删除分类品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 3
+    )
+    @Operation(summary = "根据Id删除分类品牌接口")
     @DeleteMapping("/deleteById/{id}")
     public Result<Void> deleteById(@PathVariable("id") Long id) {
         categoryBrandService.deleteById(id);
@@ -88,6 +114,12 @@ public class CategoryBrandController {
      * @param categoryId 分类Id
      * @return 品牌列表
      */
+    @Log(
+            title = "根据分类Id获取品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据分类Id获取品牌接口")
     @GetMapping("/queryBrandByCategoryId/{categoryId}")
     public Result<List<Brand>> queryBrandByCategoryId(

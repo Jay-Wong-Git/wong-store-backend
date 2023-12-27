@@ -1,6 +1,8 @@
 package com.wong.store.manager.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.BrandService;
 import com.wong.store.model.entity.product.Brand;
 import com.wong.store.model.vo.common.Result;
@@ -32,6 +34,12 @@ public class BrandController {
      * @param limit   每页显示条数
      * @return 品牌列表
      */
+    @Log(
+            title = "分页查询品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveResponseData = false
+    )
     @Operation(summary = "分页查询品牌接口")
     @GetMapping("/queryByPage/{current}/{limit}")
     public Result<PageInfo<Brand>> queryByPage(
@@ -47,6 +55,12 @@ public class BrandController {
      * @param brand 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "添加品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 1,
+            isSaveRequestData = false
+    )
     @Operation(summary = "添加品牌接口")
     @PostMapping("/save")
     public Result<Void> save(@RequestBody Brand brand) {
@@ -60,6 +74,12 @@ public class BrandController {
      * @param brand 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "修改品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 2,
+            isSaveRequestData = false
+    )
     @Operation(summary = "修改品牌接口")
     @PutMapping("/update")
     public Result<Void> update(@RequestBody Brand brand) {
@@ -73,6 +93,11 @@ public class BrandController {
      * @param brandId 品牌Id
      * @return 不返回数据
      */
+    @Log(
+            title = "删除品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 3
+    )
     @Operation(summary = "删除品牌接口")
     @DeleteMapping("/deleteById/{brandId}")
     public Result<Void> deleteById(@PathVariable("brandId") Long brandId) {
@@ -85,6 +110,12 @@ public class BrandController {
      *
      * @return 品牌列表
      */
+    @Log(
+            title = "获取所有品牌接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveResponseData = false
+    )
     @Operation(summary = "获取所有品牌接口")
     @GetMapping("/queryAll")
     public Result<List<Brand>> queryAll() {

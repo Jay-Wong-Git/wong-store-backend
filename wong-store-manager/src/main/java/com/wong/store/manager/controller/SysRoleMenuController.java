@@ -1,5 +1,7 @@
 package com.wong.store.manager.controller;
 
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.SysRoleMenuService;
 import com.wong.store.model.dto.system.AssignMenuDto;
 import com.wong.store.model.vo.common.Result;
@@ -28,6 +30,12 @@ public class SysRoleMenuController {
      * @param roleId 角色Id
      * @return 所有菜单列表及指定角色对应的菜单Id列表
      */
+    @Log(
+            title = "根据角色Id查询菜单信息接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据角色Id查询菜单信息接口")
     @GetMapping("/queryMenuByRoleId/{roleId}")
     public Result<Map<String, Object>> queryMenuByRoleId(@PathVariable("roleId") Long roleId) {
@@ -41,6 +49,12 @@ public class SysRoleMenuController {
      * @param assignMenuDto 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "给角色分配菜单接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 1,
+            isSaveRequestData = false
+    )
     @Operation(summary = "给角色分配菜单接口")
     @PostMapping("/doAssign")
     public Result<Void> doAssign(@RequestBody AssignMenuDto assignMenuDto) {

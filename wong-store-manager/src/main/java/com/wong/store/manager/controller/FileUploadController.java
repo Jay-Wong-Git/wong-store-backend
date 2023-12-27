@@ -1,5 +1,7 @@
 package com.wong.store.manager.controller;
 
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.FileUploadService;
 import com.wong.store.model.vo.common.Result;
 import com.wong.store.model.vo.common.ResultCodeEnum;
@@ -29,6 +31,13 @@ public class FileUploadController {
      * @param file 文件对象
      * @return 访问文件的 url
      */
+    @Log(
+            title = "上传文件接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveRequestData = false,
+            isSaveResponseData = false
+    )
     @Operation(summary = "上传文件接口")
     @PostMapping("/fileUpload")
     public Result<String> upload(@RequestParam("file") MultipartFile file) {

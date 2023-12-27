@@ -1,5 +1,7 @@
 package com.wong.store.manager.controller;
 
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.CategoryService;
 import com.wong.store.model.entity.product.Category;
 import com.wong.store.model.vo.common.Result;
@@ -30,6 +32,12 @@ public class CategoryController {
      * @param parentId 父分类Id
      * @return 子分类列表
      */
+    @Log(
+            title = "根据父分类Id获取子分类接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据父分类Id获取子分类接口")
     @GetMapping("/queryByParentId/{parentId}")
     public Result<List<Category>> queryByParentId(@PathVariable("parentId") Long parentId) {
@@ -42,6 +50,13 @@ public class CategoryController {
      *
      * @param response 响应对象
      */
+    @Log(
+            title = "导出分类数据为Excel接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveRequestData = false,
+            isSaveResponseData = false
+    )
     @Operation(summary = "导出分类数据为Excel接口")
     @GetMapping("/exportData")
     public void exportData(HttpServletResponse response) {
@@ -54,6 +69,13 @@ public class CategoryController {
      * @param multipartFile 文件对象
      * @return 不返回数据
      */
+    @Log(
+            title = "从外部Excel导入分类数据接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveRequestData = false,
+            isSaveResponseData = false
+    )
     @Operation(summary = "从外部Excel导入分类数据接口")
     @PostMapping("/importData")
     public Result<Void> importData(@RequestParam("file") MultipartFile multipartFile) {

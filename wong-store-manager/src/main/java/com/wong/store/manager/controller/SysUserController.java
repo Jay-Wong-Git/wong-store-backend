@@ -1,6 +1,8 @@
 package com.wong.store.manager.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wong.store.common.log.annotation.Log;
+import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.manager.service.SysUserService;
 import com.wong.store.model.dto.system.AssignRoleDto;
 import com.wong.store.model.dto.system.SysUserDto;
@@ -32,6 +34,13 @@ public class SysUserController {
      * @param sysUserDto 条件参数对象
      * @return 用户信息列表
      */
+    @Log(
+            title = "根据条件分页查询用户接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 0,
+            isSaveRequestData = false,
+            isSaveResponseData = false
+    )
     @Operation(summary = "根据条件分页查询用户接口")
     @PostMapping("/queryByCriteriaByPage/{current}/{limit}")
     public Result<PageInfo<SysUser>> queryByCriteriaByPage(
@@ -48,6 +57,12 @@ public class SysUserController {
      * @param sysUser 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "添加用户接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 1,
+            isSaveRequestData = false
+    )
     @Operation(summary = "添加用户接口")
     @PostMapping("/save")
     public Result<Void> save(@RequestBody SysUser sysUser) {
@@ -61,6 +76,12 @@ public class SysUserController {
      * @param sysUser 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "修改用户接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 2,
+            isSaveRequestData = false
+    )
     @Operation(summary = "修改用户接口")
     @PutMapping("/update")
     public Result<Void> update(@RequestBody SysUser sysUser) {
@@ -74,6 +95,11 @@ public class SysUserController {
      * @param userId 用户 id
      * @return 不返回数据
      */
+    @Log(
+            title = "根据Id删除用户接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 3
+    )
     @Operation(summary = "根据Id删除用户接口")
     @DeleteMapping("/deleteById/{userId}")
     public Result<Void> deleteById(@PathVariable("userId") Long userId) {
@@ -87,6 +113,12 @@ public class SysUserController {
      * @param assignRoleDto 参数对象
      * @return 不返回数据
      */
+    @Log(
+            title = "给用户分配角色接口",
+            operatorType = OperatorType.MANAGE,
+            businessType = 1,
+            isSaveRequestData = false
+    )
     @Operation(summary = "给用户分配角色接口")
     @PostMapping("/doAssign")
     public Result<Void> doAssign(@RequestBody AssignRoleDto assignRoleDto) {
