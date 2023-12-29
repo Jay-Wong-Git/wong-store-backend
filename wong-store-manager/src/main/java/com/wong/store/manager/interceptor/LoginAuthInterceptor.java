@@ -9,7 +9,6 @@ import com.wong.store.utils.AuthContextUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -51,7 +50,7 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
 
         // 将用户数据存储到ThreadLocal对象中
         SysUser sysUser = JSON.parseObject(userInfo, SysUser.class);
-        AuthContextUtil.set(sysUser);
+        AuthContextUtil.setSysUser(sysUser);
 
         // 重置redis中用户数据的有效时间
         redisTemplate.expire("user:login:" + token, 30, TimeUnit.MINUTES);
@@ -62,7 +61,7 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        AuthContextUtil.remove();  // 移除ThreadLocal对象中的数据
+        AuthContextUtil.removeSysUser();  // 移除ThreadLocal对象中的数据
     }
 
     // 响应208状态码给前端

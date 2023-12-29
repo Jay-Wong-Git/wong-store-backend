@@ -24,7 +24,7 @@ import java.util.List;
  * @author Jay Wong
  * @date 2023/12/22 14:31
  */
-@Tag(name = "用户登录/退出接口")
+@Tag(name = "首页接口")
 @RestController
 @RequestMapping("/admin/system/index")
 public class IndexController {
@@ -62,7 +62,7 @@ public class IndexController {
     @GetMapping(value = "/getUserInfo")
     public Result<SysUser> getUserInfo() {
         // 1.从ThreadLocal对象中获取用户信息
-        SysUser sysUser = AuthContextUtil.get();
+        SysUser sysUser = AuthContextUtil.getSysUser();
         // 2.将用户信息返回
         return Result.build(sysUser, ResultCodeEnum.SUCCESS);
     }
@@ -90,7 +90,7 @@ public class IndexController {
     @Operation(summary = "获取用户对应菜单接口")
     @GetMapping("/menus")
     public Result<List<SysMenuVo>> menus() {
-        SysUser sysUser = AuthContextUtil.get();
+        SysUser sysUser = AuthContextUtil.getSysUser();
         List<SysMenuVo> menuVoList = sysMenuService.querySysMenuVoListByUserId(sysUser.getId());
         return Result.build(menuVoList, ResultCodeEnum.SUCCESS);
     }

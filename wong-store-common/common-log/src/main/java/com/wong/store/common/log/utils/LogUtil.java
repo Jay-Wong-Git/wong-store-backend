@@ -2,7 +2,6 @@ package com.wong.store.common.log.utils;
 
 import com.alibaba.fastjson2.JSON;
 import com.wong.store.common.log.annotation.Log;
-import com.wong.store.common.log.enums.OperatorType;
 import com.wong.store.model.entity.system.SysOperLog;
 import com.wong.store.utils.AuthContextUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
@@ -64,6 +62,6 @@ public class LogUtil {
                 sysOperLog.setOperParam(params);
             }
         }
-        sysOperLog.setOperName(AuthContextUtil.get().getUserName());
+        sysOperLog.setOperName(AuthContextUtil.getSysUser().getUserName());
     }
 }

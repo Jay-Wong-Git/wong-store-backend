@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
 public class BaseEntity implements Serializable {
-
+    @Serial
+    private static final long serialVersionUID = -4280701986417573553L;
     @Schema(description = "唯一标识")
     private Long id;
 
