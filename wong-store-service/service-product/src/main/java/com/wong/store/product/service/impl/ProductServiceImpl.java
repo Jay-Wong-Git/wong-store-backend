@@ -107,4 +107,15 @@ public class ProductServiceImpl implements ProductService {
         productItemVo.setSkuSpecValueMap(skuSpecValueMap);
         return productItemVo;
     }
+
+    /**
+     * 根据skuId获取Sku
+     *
+     * @param skuId skuId
+     * @return ProductSku对象
+     */
+    @Override
+    public ProductSku getSkuBySkuId(Long skuId) {
+        return productSkuMapper.queryById(skuId);
+    }
 }

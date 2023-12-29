@@ -1,0 +1,15 @@
+server:
+  port: 8841
+spring:
+  application:
+    name: service-cart
+  cloud:
+    # 配置nacos
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  data:
+    # 配置redis
+    redis:
+      host: localhost
+      port: 6379

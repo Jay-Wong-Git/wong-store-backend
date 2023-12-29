@@ -20,4 +20,7 @@ public interface ProductService {
 
     // 根据skuId查询商品详细数据
     ProductItemVo item(Long skuId);
+
+    // 根据skuId获取Sku
+    ProductSku getSkuBySkuId(Long skuId);
 }

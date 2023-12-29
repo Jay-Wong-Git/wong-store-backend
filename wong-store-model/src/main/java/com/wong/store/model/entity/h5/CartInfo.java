@@ -4,12 +4,14 @@ import com.wong.store.model.entity.base.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 @Data
 @Schema(description = "购物车实体类")
 public class CartInfo extends BaseEntity {
    
+   @Serial
    private static final long serialVersionUID = 1L;
 
    @Schema(description = "用户id")

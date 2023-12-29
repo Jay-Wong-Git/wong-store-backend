@@ -4,6 +4,7 @@ spring:
   application:
     name: service-user
   cloud:
+    # 配置nacos
     nacos:
       discovery:
         server-addr: localhost:8848
@@ -14,8 +15,8 @@ spring:
     url: jdbc:mysql://localhost:3306/wong_store?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
-  # 配置redis
   data:
+    # 配置redis
     redis:
       host: localhost
       port: 6379

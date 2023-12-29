@@ -55,4 +55,17 @@ public class ProductController {
         ProductItemVo productItemVo = productService.item(skuId);
         return Result.build(productItemVo, ResultCodeEnum.SUCCESS);
     }
+
+    /**
+     * 用于远程调用，根据skuId获取商品sku信息接口
+     *
+     * @param skuId skuId
+     * @return ProductSku对象
+     */
+    @Operation(summary = "根据skuId获取商品sku信息接口")
+    @GetMapping("/querySkuBySkuId/{skuId}")
+    public ProductSku querySkuBySkuId(
+            @Parameter(name = "skuId", description = "商品skuId", required = true) @PathVariable Long skuId) {
+        return productService.getSkuBySkuId(skuId);
+    }
 }
