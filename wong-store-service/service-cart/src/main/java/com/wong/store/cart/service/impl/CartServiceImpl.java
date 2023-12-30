@@ -7,10 +7,14 @@ import com.wong.store.model.entity.h5.CartInfo;
 import com.wong.store.model.entity.product.ProductSku;
 import com.wong.store.utils.AuthContextUtil;
 import jakarta.annotation.Resource;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Jay Wong
@@ -31,9 +35,8 @@ public class CartServiceImpl implements CartService {
      */
     @Override
     public void addToCart(Long skuId, Integer skuNum) {
-        // 获取当前登录用户的id
-        Long userId = AuthContextUtil.getUserInfo().getId();
-        String cartKey = "user:cart:" + userId;
+        // 获取cartKey
+        String cartKey = getCartKey();
         // 获取缓存对象
         Object cartInfoObj = redisTemplate.opsForHash().get(cartKey, String.valueOf(skuId));
         CartInfo cartInfo = null;
@@ -52,7 +55,7 @@ public class CartServiceImpl implements CartService {
             cartInfo.setCartPrice(productSku.getSalePrice());
             cartInfo.setSkuNum(skuNum);
             cartInfo.setSkuId(skuId);
-            cartInfo.setUserId(userId);
+            cartInfo.setUserId(getUserId());
             cartInfo.setImgUrl(productSku.getThumbImg());
             cartInfo.setSkuName(productSku.getSkuName());
             cartInfo.setIsChecked(1);
@@ -61,5 +64,99 @@ public class CartServiceImpl implements CartService {
         }
         // 将商品数据存储到购物车中
         redisTemplate.opsForHash().put(cartKey, String.valueOf(skuId), JSONObject.toJSONString(cartInfo));
+    }
+
+    /**
+     * 查询购物车列表
+     *
+     * @return 购物车列表
+     */
+    @Override
+    public List<CartInfo> queryCartInfoList() {
+        // 获取cartKey
+        String cartKey = getCartKey();
+        // 从redis中获取数据
+        List<Object> cartInfoObjList = redisTemplate.opsForHash().values(cartKey);
+        if (!CollectionUtils.isEmpty(cartInfoObjList)) {
+            return cartInfoObjList
+                    .stream()
+                    .map(cartInfoObj -> JSONObject.parseObject(cartInfoObj.toString(), CartInfo.class))
+                    .sorted((o1, o2) -> o2.getCreateTime().compareTo(o1.getCreateTime()))
+                    .collect(Collectors.toList());
+        }
+        return new ArrayList<>();
+    }
+
+    /**
+     * 根据skuId删除购物车中指定商品
+     *
+     * @param skuId skuId
+     */
+    @Override
+    public void deleteFromCartBySkuId(Long skuId) {
+        // 从redis中删除数据
+        redisTemplate.opsForHash().delete(getCartKey(), String.valueOf(skuId));
+    }
+
+    /**
+     * 根据skuId更新购物车中指定商品的选中状态
+     *
+     * @param skuId     skuId
+     * @param isChecked 选中状态 1:选中 0:取消
+     */
+    @Override
+    public void updateCheckStatusBySkuId(Long skuId, Integer isChecked) {
+        Object cartInfoObj = redisTemplate.opsForHash().get(getCartKey(), String.valueOf(skuId));
+        if (cartInfoObj != null) {
+            CartInfo cartInfo = JSONObject.parseObject(cartInfoObj.toString(), CartInfo.class);
+            cartInfo.setIsChecked(isChecked);
+            redisTemplate.opsForHash().put(getCartKey(), String.valueOf(skuId), JSONObject.toJSONString(cartInfo));
+        }
+    }
+
+    /**
+     * 统一更新购物车中全部商品的选中状态
+     *
+     * @param isChecked 选中状态 1:选中 0:取消
+     */
+    @Override
+    public void updateAllCheckStatus(Integer isChecked) {
+        List<Object> cartInfoObjList = redisTemplate.opsForHash().values(getCartKey());
+        if (!CollectionUtils.isEmpty(cartInfoObjList)) {
+            cartInfoObjList
+                    .stream()
+                    .map(cartInfoObj -> {
+                        CartInfo cartInfo = JSONObject.parseObject(cartInfoObj.toString(), CartInfo.class);
+                        cartInfo.setIsChecked(isChecked);
+                        return cartInfo;
+                    })
+                    .forEach(cartInfo -> redisTemplate.opsForHash().put(getCartKey(), String.valueOf(cartInfo.getSkuId()), JSONObject.toJSONString(cartInfo)));
+        }
+    }
+
+    /**
+     * 清空购物车
+     */
+    @Override
+    public void clearCart() {
+        redisTemplate.delete(getCartKey());
+    }
+
+    /**
+     * 生成cartKey
+     *
+     * @return cartKey
+     */
+    private String getCartKey() {
+        return "user:cart:" + getUserId();
+    }
+
+    /**
+     * 从LocalThread中获取userId
+     *
+     * @return userId
+     */
+    private Long getUserId() {
+        return AuthContextUtil.getUserInfo().getId();
     }
 }
