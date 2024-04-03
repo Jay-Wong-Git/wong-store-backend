@@ -11,6 +11,4 @@ import java.io.File;
 public interface FileUploadService {
     // 上传文件到 minio
     String upload(MultipartFile file);
-
-    String uploadImage(File file);
 }

@@ -26,4 +26,10 @@ public interface CartService {
 
     // 清空购物车
     void clearCart();
+
+    // 获取购物车中选中的商品列表
+    List<CartInfo> queryAllChecked();
+
+    // 删除购物车中选中的商品
+    void deleteChecked();
 }

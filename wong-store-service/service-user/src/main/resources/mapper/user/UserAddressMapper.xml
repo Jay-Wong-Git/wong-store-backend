@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.user.mapper.UserAddressMapper">
+    <!-- 映射查询到的字段 -->
+    <resultMap id="userAddressMap" type="com.wong.store.model.entity.user.UserAddress" autoMapping="true"/>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,user_id,name,phone,tag_name,province_code,city_code,district_code,address,full_address,is_default,create_time,update_time,is_deleted
+    </sql>
+
+    <!-- 根据用户Id获取用户地址对象列表 -->
+    <select id="queryUserAddressList" resultMap="userAddressMap">
+        SELECT
+        <include refid="columns"/>
+        FROM user_address
+        WHERE user_id = #{userId} AND is_deleted = 0
+    </select>
+
+    <!-- 根据id获取用户地址对象 -->
+    <select id="queryById" resultMap="userAddressMap">
+        SELECT
+        <include refid="columns"/>
+        FROM user_address
+        WHERE id = #{id} AND is_deleted = 0
+    </select>
+
+</mapper>

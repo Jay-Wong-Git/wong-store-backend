@@ -104,4 +104,24 @@ public class CartController {
         cartService.clearCart();
         return Result.build(null, ResultCodeEnum.SUCCESS);
     }
+
+    /**
+     * 用于远程调用，获取购物车中选中的商品列表接口
+     *
+     * @return 选中的商品列表
+     */
+    @Operation(summary = "获取购物车中选中的商品列表接口")
+    @GetMapping(value = "/auth/getAllCkecked")
+    public List<CartInfo> queryAllChecked() {
+        return cartService.queryAllChecked();
+    }
+
+    /**
+     * 用于远程调用，删除购物车中选中的商品接口
+     */
+    @Operation(summary = "删除购物车中选中的商品接口")
+    @GetMapping(value = "/auth/deleteChecked")
+    public void deleteChecked() {
+        cartService.deleteChecked();
+    }
 }

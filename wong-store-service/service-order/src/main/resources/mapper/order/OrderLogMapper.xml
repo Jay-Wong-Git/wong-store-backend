@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.order.mapper.OrderLogMapper">
+
+    <!-- 映射查询到的字段 -->
+    <resultMap id="orderLogMap" type="com.wong.store.model.entity.order.OrderLog" autoMapping="true"/>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,order_id,operate_user,process_status,note,create_time,update_time,is_deleted
+    </sql>
+
+    <!-- 添加订单日志 -->
+    <insert id="save">
+        INSERT INTO order_log(id, order_id, operate_user, process_status, note,
+                              create_time, update_time, is_deleted)
+        VALUES (#{id},
+                #{orderId},
+                #{operateUser},
+                #{processStatus},
+                #{note},
+                NOW(),
+                NOW(),
+                0)
+    </insert>
+</mapper>

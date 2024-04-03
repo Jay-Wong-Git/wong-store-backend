@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author Jay Wong
  * @date 2023/12/29 21:40
  */
-@FeignClient(value = "service-product")
+@FeignClient("service-product")
 public interface ProductFeignClient {
     @GetMapping("/api/product/querySkuBySkuId/{skuId}")
     ProductSku querySkuBySkuId(@PathVariable Long skuId);

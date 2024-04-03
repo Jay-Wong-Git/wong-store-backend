@@ -4,6 +4,7 @@ import com.wong.store.model.entity.base.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Schema(description = "OrderInfo")
 public class OrderInfo extends BaseEntity {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@Schema(description = "会员_id")

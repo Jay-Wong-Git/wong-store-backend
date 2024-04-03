@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wong.store.order.mapper.OrderInfoMapper">
+
+    <!-- 映射查询到的字段 -->
+    <resultMap id="orderInfoMap" type="com.wong.store.model.entity.order.OrderInfo" autoMapping="true"/>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,user_id,nick_name,order_no,coupon_id,total_amount,coupon_amount,original_total_amount,feight_fee,pay_type,order_status,receiver_name,receiver_phone,receiver_tag_name,receiver_province,receiver_city,receiver_district,receiver_address,payment_time,delivery_time,receive_time,remark,cancel_time,cancel_reason,create_time,update_time,is_deleted
+    </sql>
+
+    <!-- 添加订单详情 -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO order_info(id, user_id, nick_name, order_no, coupon_id,
+                               total_amount, coupon_amount, original_total_amount,
+                               feight_fee, pay_type, order_status, receiver_name,
+                               receiver_phone, receiver_tag_name, receiver_province,
+                               receiver_city, receiver_district, receiver_address,
+                               payment_time, delivery_time, receive_time, remark,
+                               cancel_time, cancel_reason, create_time, update_time,
+                               is_deleted)
+        VALUES (#{id},
+                #{userId},
+                #{nickName},
+                #{orderNo},
+                #{couponId},
+                #{totalAmount},
+                #{couponAmount},
+                #{originalTotalAmount},
+                #{feightFee},
+                #{payType},
+                #{orderStatus},
+                #{receiverName},
+                #{receiverPhone},
+                #{receiverTagName},
+                #{receiverProvince},
+                #{receiverCity},
+                #{receiverDistrict},
+                #{receiverAddress},
+                #{paymentTime},
+                #{deliveryTime},
+                #{receiveTime},
+                #{remark},
+                #{cancelTime},
+                #{cancelReason},
+                NOW(),
+                NOW(),
+                0)
+    </insert>
+
+    <!-- 根据id获取订单信息 -->
+    <select id="queryById" resultMap="orderInfoMap">
+        SELECT
+        <include refid="columns"/>
+        FROM order_info
+        WHERE id = #{id} AND is_deleted = 0
+    </select>
+
+    <!-- 根据订单状态查询订单信息 -->
+    <select id="queryByOrderStatus" resultMap="orderInfoMap">
+        SELECT
+        <include refid="columns"/>
+        FROM order_info
+        <where>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="orderStatus != null and orderStatus != ''">
+                and order_status = #{orderStatus}
+            </if>
+        </where>
+        AND is_deleted = 0
+        ORDER BY id DESC
+    </select>
+
+    <!-- 根据订单编号查询订单信息 -->
+    <select id="queryByOrderNo" resultMap="orderInfoMap">
+        SELECT
+        <include refid="columns"/>
+        FROM order_info
+        WHERE order_no = #{orderNo} AND is_deleted = 0
+    </select>
+</mapper>

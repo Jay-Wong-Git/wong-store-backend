@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2df767f6-f05d-49f3-8af9-4328a5da1b5b" name="Changes" comment="完成购物车功能">
+      <change afterPath="$PROJECT_DIR$/wong-store-common/common-service/src/main/java/com/wong/store/common/annotation/EnableUserTokenFeignInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-common/common-service/src/main/java/com/wong/store/common/interceptor/UserTokenFeignInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service-client/service-cart-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service-client/service-cart-client/src/main/java/com/wong/store/feign/cart/CartFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service-client/service-order-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service-client/service-order-client/src/main/java/com/wong/store/feign/order/OrderFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service-client/service-user-client/src/main/java/com/wong/store/feign/user/UserFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/OrderApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/controller/OrderInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/mapper/OrderInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/mapper/OrderItemMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/mapper/OrderLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/service/OrderInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/java/com/wong/store/order/service/impl/OrderInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/mapper/order/OrderInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/mapper/order/OrderItemMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/mapper/order/OrderLogMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/PayApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/config/AlipayConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/controller/AlipayController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/mapper/PaymentInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/properties/AlipayProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/service/AlipayService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/service/PaymentInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/service/impl/AlipayServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/java/com/wong/store/pay/service/impl/PaymentInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources/application-alipay.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources/mapper/pay/PaymentInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-user/src/main/java/com/wong/store/user/Controller/UserAddressController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-user/src/main/java/com/wong/store/user/Service/UserAddressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-user/src/main/java/com/wong/store/user/Service/impl/UserAddressServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-user/src/main/java/com/wong/store/user/mapper/UserAddressMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wong-store-service/service-user/src/main/resources/mapper/user/UserAddressMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-common/common-service/src/main/java/com/wong/store/common/interceptor/UserLoginAuthInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-common/common-service/src/main/java/com/wong/store/common/interceptor/UserLoginAuthInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-manager/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-manager/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-manager/src/main/java/com/wong/store/manager/service/FileUploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-manager/src/main/java/com/wong/store/manager/service/FileUploadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-manager/src/main/java/com/wong/store/manager/service/impl/FileUploadServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-manager/src/main/java/com/wong/store/manager/service/impl/FileUploadServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-manager/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-manager/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-manager/src/test/java/com/wong/store/manager/test/UploadImageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-model/src/main/java/com/wong/store/model/entity/order/OrderInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-model/src/main/java/com/wong/store/model/entity/order/OrderInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-server-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-server-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-server-gateway/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-server-gateway/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service-client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service-client/service-product-client/src/main/java/com/wong/store/feign/product/ProductFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service-client/service-product-client/src/main/java/com/wong/store/feign/product/ProductFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-cart/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-cart/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-cart/src/main/java/com/wong/store/cart/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-cart/src/main/java/com/wong/store/cart/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-cart/src/main/java/com/wong/store/cart/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-cart/src/main/java/com/wong/store/cart/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-cart/src/main/java/com/wong/store/cart/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-cart/src/main/java/com/wong/store/cart/service/impl/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-order/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-order/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-product/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-product/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wong-store-service/service-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wong-store-service/service-user/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="mybatis-config" />
+        <option value="package-info" />
+        <option value="AnnotationType" />
+        <option value="mybatis-mapper" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../DevSoft/apache-maven-3.9.0" />
+        <option name="userSettingsFile" value="$PROJECT_DIR$/../../../DevSoft/apache-maven-3.9.0/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2ZstMNT1h72icJaJNC1quvuTYpg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/andywong/Documents/Dev/DevCode/AndyProjects/wong-store-parent/wong-store-service/service-user/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ee0788295c7c77f40cffa60f4c9bc02b&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;MySQL&quot;
+    ]
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wong-store-service/service-user/src/main/resources" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-product/src/main/resources" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-cart/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wong-store-manager/src/main/resources" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-pay/src/main/resources" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-order/src/main/resources/mapper/order" />
+      <recent name="$PROJECT_DIR$/wong-store-service/service-product/src/main/resources/mapper" />
+      <recent name="$PROJECT_DIR$/wong-store-manager/src/main/resources/mapper/role" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.wong.store.product.service" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ManagerApplication">
+    <configuration name="CartApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-cart" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.cart.CartApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.cart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="wong-store-server-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.gateway.GatewayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ManagerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="wong-store-manager" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.manager.ManagerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.manager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-order" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.order.OrderApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.order.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-pay" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.pay.PayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.pay.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-product" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.product.ProductApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.product.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wong.store.user.UserApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wong.store.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.OrderApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
+        <item itemvalue="Spring Boot.UserApplication" />
+        <item itemvalue="Spring Boot.ProductApplication" />
+        <item itemvalue="Spring Boot.PayApplication" />
+        <item itemvalue="Spring Boot.CartApplication" />
+        <item itemvalue="Spring Boot.ManagerApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2df767f6-f05d-49f3-8af9-4328a5da1b5b" name="Changes" comment="" />
+      <created>1703222565648</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703222565648</updated>
+      <workItem from="1703222566660" duration="54004000" />
+      <workItem from="1703398841341" duration="22615000" />
+      <workItem from="1703468647646" duration="24323000" />
+      <workItem from="1703554470654" duration="29358000" />
+      <workItem from="1703641194921" duration="15680000" />
+      <workItem from="1703663176665" duration="17909000" />
+      <workItem from="1703691684569" duration="197000" />
+      <workItem from="1703691892738" duration="19059000" />
+      <workItem from="1703757796074" duration="42222000" />
+      <workItem from="1703852348309" duration="7295000" />
+      <workItem from="1703868171667" duration="1175000" />
+      <workItem from="1703915369304" duration="17856000" />
+      <workItem from="1703951909615" duration="26000" />
+      <workItem from="1703951952739" duration="5079000" />
+      <workItem from="1703989685727" duration="10002000" />
+      <workItem from="1704034499511" duration="99000" />
+      <workItem from="1704034609892" duration="79000" />
+      <workItem from="1704034788963" duration="2835000" />
+      <workItem from="1704122400726" duration="392000" />
+      <workItem from="1704122798782" duration="954000" />
+      <workItem from="1704163832657" duration="1784000" />
+      <workItem from="1704166031198" duration="929000" />
+      <workItem from="1704167001789" duration="50000" />
+      <workItem from="1704167088392" duration="2176000" />
+      <workItem from="1704176396945" duration="2747000" />
+      <workItem from="1704189322243" duration="2427000" />
+      <workItem from="1704252662758" duration="638000" />
+      <workItem from="1704255103973" duration="126000" />
+      <workItem from="1704255600056" duration="334000" />
+    </task>
+    <task id="LOCAL-00001" summary="完成登录功能">
+      <option name="closed" value="true" />
+      <created>1703252869077</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703252869077</updated>
+    </task>
+    <task id="LOCAL-00002" summary="完成角色管理功能">
+      <option name="closed" value="true" />
+      <created>1703324361822</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703324361822</updated>
+    </task>
+    <task id="LOCAL-00003" summary="完成用户管理功能">
+      <option name="closed" value="true" />
+      <created>1703416217110</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1703416217110</updated>
+    </task>
+    <task id="LOCAL-00004" summary="完成菜单管理功能">
+      <option name="closed" value="true" />
+      <created>1703492317252</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703492317252</updated>
+    </task>
+    <task id="LOCAL-00005" summary="完成分类管理功能">
+      <option name="closed" value="true" />
+      <created>1703568392131</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703568392131</updated>
+    </task>
+    <task id="LOCAL-00006" summary="完成品牌管理功能">
+      <option name="closed" value="true" />
+      <created>1703572254683</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1703572254683</updated>
+    </task>
+    <task id="LOCAL-00007" summary="完成分类品牌管理功能">
+      <option name="closed" value="true" />
+      <created>1703578619485</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703578619485</updated>
+    </task>
+    <task id="LOCAL-00008" summary="完成商品规格管理功能">
+      <option name="closed" value="true" />
+      <created>1703581834938</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703581834938</updated>
+    </task>
+    <task id="LOCAL-00009" summary="完成商品管理功能">
+      <option name="closed" value="true" />
+      <created>1703656795732</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1703656795732</updated>
+    </task>
+    <task id="LOCAL-00010" summary="完成统计订单功能">
+      <option name="closed" value="true" />
+      <created>1703677555409</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1703677555409</updated>
+    </task>
+    <task id="LOCAL-00011" summary="完成日志切面功能">
+      <option name="closed" value="true" />
+      <created>1703690818858</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1703690818858</updated>
+    </task>
+    <task id="LOCAL-00012" summary="完成首页数据、商品列表、商品详情以及用户注册和登录功能">
+      <option name="closed" value="true" />
+      <created>1703844897887</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703844897887</updated>
+    </task>
+    <task id="LOCAL-00013" summary="完成添加商品到购物车功能">
+      <option name="closed" value="true" />
+      <created>1703858661130</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703858661130</updated>
+    </task>
+    <task id="LOCAL-00014" summary="完成购物车功能">
+      <option name="closed" value="true" />
+      <created>1703940775271</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703940775271</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成登录功能" />
+    <MESSAGE value="完成角色管理功能" />
+    <MESSAGE value="完成用户管理功能" />
+    <MESSAGE value="完成菜单管理功能" />
+    <MESSAGE value="完成分类管理功能" />
+    <MESSAGE value="完成品牌管理功能" />
+    <MESSAGE value="完成分类品牌管理功能" />
+    <MESSAGE value="完成商品规格管理功能" />
+    <MESSAGE value="完成商品管理功能" />
+    <MESSAGE value="完成统计订单功能" />
+    <MESSAGE value="完成日志切面功能" />
+    <MESSAGE value="完成首页数据、商品列表、商品详情以及用户注册和登录功能" />
+    <MESSAGE value="完成添加商品到购物车功能" />
+    <MESSAGE value="完成购物车功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成购物车功能" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wong-store-service/service-user/src/main/java/com/wong/store/user/Service/impl/UserAddressServiceImpl.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
